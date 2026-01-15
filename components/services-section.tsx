@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Globe, ShoppingCart, Rocket, Code, Wrench, Search } from 'lucide-react';
 
-const icons = [Globe, ShoppingCart, Rocket, Code, Wrench, Search];
+const icons = [Globe, Wrench, Rocket, Code, Search];
 
 export default function ServicesSection() {
   const { t } = useI18n();
