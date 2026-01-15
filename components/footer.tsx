@@ -1,0 +1,119 @@
+"use client";
+
+import { useI18n } from "@/lib/i18n";
+import { Facebook, Instagram, Linkedin, Mail, MapPin, Phone } from "lucide-react";
+
+export default function Footer() {
+  const { t, locale, whatsappNumber } = useI18n();
+
+  // Números e localizações podem vir do contexto ou de um objeto
+  const phoneMap: Record<string, string> = {
+    "pt-BR": "+55 21 97031-2366",
+    // "pt-PT": "+351 966 939 673",
+    // "en-US": "+351 966 939 673",
+  };
+  const mailMap: Record<string, string> = {
+    "pt-BR": "contato@ambiverso.com.br",
+    // "pt-PT": "contato@getglobe.com.br",
+    // "en-US": "contato@getglobe.com.br",
+  };
+
+  const locationMap: Record<string, string> = {
+    "pt-BR": "Rio de Janeiro, Brasil",
+    // "pt-PT": "Lisboa, Portugal",
+    // "en-US": "Lisboa, Portugal",
+  };
+
+  const phone = phoneMap[locale] || phoneMap["pt-BR"];
+  const location = locationMap[locale] || locationMap["pt-BR"];
+  const mail = mailMap[locale] || mailMap["pt-BR"];
+
+  const scrollTo = (href: string) => {
+    const el = document?.querySelector?.(href);
+    el?.scrollIntoView?.({ behavior: "smooth" });
+  };
+
+  return (
+    <footer className="bg-slate-900 text-white py-16">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        <div className="grid md:grid-cols-4 gap-10 mb-10">
+          <div className="md:col-span-2">
+            <h3 className="text-2xl font-bold bg-gradient-to-r from-violet-400 to-indigo-400 bg-clip-text text-transparent mb-4">
+              Ambiverso & Co
+            </h3>
+            <p className="text-slate-400 mb-6 max-w-md">
+              {t?.footer?.description ?? "Dê Vida às Suas Melhores Ideias."}
+            </p>
+            {/* <div className="flex gap-4">
+              <a
+                href="#"
+                className="w-10 h-10 bg-slate-800 hover:bg-violet-600 rounded-full flex items-center justify-center transition-colors"
+              >
+                <Facebook className="w-5 h-5" />
+              </a>
+              <a
+                href="#"
+                className="w-10 h-10 bg-slate-800 hover:bg-violet-600 rounded-full flex items-center justify-center transition-colors"
+              >
+                <Instagram className="w-5 h-5" />
+              </a>
+              <a
+                href="#"
+                className="w-10 h-10 bg-slate-800 hover:bg-violet-600 rounded-full flex items-center justify-center transition-colors"
+              >
+                <Linkedin className="w-5 h-5" />
+              </a>
+            </div> */}
+          </div>
+
+          <div>
+            <h4 className="font-semibold text-lg mb-4">
+              {t?.footer?.quickLinks ?? "Links Rápidos"}
+            </h4>
+            <ul className="space-y-2">
+              {[
+                { href: "#home", label: t?.nav?.home ?? "Início" },
+                { href: "#about", label: t?.nav?.about ?? "Sobre" },
+                { href: "#services", label: t?.nav?.services ?? "Serviços" },
+                { href: "#portfolio", label: t?.nav?.portfolio ?? "Portfólio" },
+              ].map((link) => (
+                <li key={link.href}>
+                  <button
+                    onClick={() => scrollTo(link.href)}
+                    className="text-slate-400 hover:text-violet-400 transition-colors"
+                  >
+                    {link.label}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="font-semibold text-lg mb-4">
+              {t?.footer?.contact ?? "Contato"}
+            </h4>
+            <ul className="space-y-3">
+              <li className="flex items-center gap-3 text-slate-400">
+                <Phone className="w-5 h-5 text-violet-400" />
+                {phone}
+              </li>
+              <li className="flex items-center gap-3 text-slate-400">
+                <Mail className="w-5 h-5 text-violet-400" />
+                {mail}
+              </li>
+              <li className="flex items-center gap-3 text-slate-400">
+                <MapPin className="w-5 h-5 text-violet-400" />
+                {location}
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div className="border-t border-slate-800 pt-8 text-center text-slate-500 text-sm">
+          © {new Date().getFullYear()} Ambiverso & Co. {t?.footer?.rights ?? "Todos os direitos reservados."}
+        </div>
+      </div>
+    </footer>
+  );
+}
