@@ -9,15 +9,15 @@ export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXTAUTH_URL || 'http://localhost:3000'),
-  title: 'Get Globe Bridge - Desenvolvimento Web Profissional',
-  description: 'Transformamos ideias em experiências digitais. Sites, e-commerce, landing pages e sistemas web modernos.',
+  title: 'Ambiverso & Co ',
+  description: '',
   icons: {
     icon: '/favicon.svg',
     shortcut: '/favicon.svg'
   },
   openGraph: {
-    title: 'Get Globe Bridge - Desenvolvimento Web Profissional',
-    description: 'Transformamos ideias em experiências digitais. Sites, e-commerce, landing pages e sistemas web modernos.',
+    title: 'Ambiverso & Co ',
+    description: '',
     images: ['/og-image.png']
   }
 };
